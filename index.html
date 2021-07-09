@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mire esto ❤️</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<style>
+    body {
+        background:linear-gradient(135deg, #ff7bc8 0%,#493149 100%);
+        font-family: 'Montserrat', sans-serif;
+        padding: 0;
+        margin: 0;
+    }
+    main {
+        height: calc(100vh - 50px);
+    }
+    .container {
+        max-width: 400px;
+        margin: auto;
+    }
+    .box {
+        margin-top: 50px;
+        border: 1px solid black;
+        border-radius: 5px;
+        text-align: center;
+        background: white;
+    }
+    #pool {
+        position: relative;
+        height: 80%;
+    }
+    button {
+        background: #000000;
+        border-radius: 0;
+        position: absolute;
+        border: 1px solid rgb(255, 253, 253);
+        font-size: 40px;
+        border-radius: 15px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #a4e9a0;
+    }
+    #yes {
+        z-index: 999;
+    }
+    #yes, #no {
+        position: absolute;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+<body>
+    <main>
+        <div class="container">
+            <div class="box">
+                <h2>¿Me dejara ganar 😁❤️😘?</h2>
+                <p id="message"></p>
+            </div>
+        </div>
+        <div id="pool">
+            <button id="yes" style="top: 100px;left: 60%;color: white;">
+                Sí 🥰
+            </button>
+            <button id="no" style="top: 100px;left: 20%;color: white;">
+                No 😒
+            </button>
+        </div>
+    </main>
+
+    <script>
+        var yes = document.getElementById('yes');
+        var no = document.getElementById('no');
+        var messages = [
+            '¿Va a rechazar esta oportunidad?',
+            'Casi',
+            'Yo se que me dejaras ganar quieres 😘',
+            'No se haga rogar 🥺',
+            'Tranquila, lo entiendo 🙃',
+            'Yo se que quiere 😏',
+            'Prometo que no abusare mucho',
+            'cuando usted quiera responda',
+            'No te voy a engañar 😫',
+            'Le doy otra oportunidad 😚',
+        ];
+        yes.addEventListener('click', showAlert);
+        if(window.outerWidth <= 768) {
+            no.addEventListener('click', randomPosition); 
+        } else {
+            no.addEventListener('mouseover', randomPosition);
+        }
+
+        function showAlert() {
+            Swal.fire({
+                title: 'Sabía que diría que sí ❤️😘',
+                html: `
+                    <img src="images.jfif" alt="carita"/>
+                `,
+                showConfirmButton: false,
+            })
+        }
+
+        function randomPosition(element) {
+            var pool = document.getElementById('pool');
+            var message = document.getElementById('message');
+            message.innerText = messages[randomBetween(0, 5)]
+            var top = randomBetween(0, pool.offsetHeight - 75, 'vertical') + 'px';
+            var left = randomBetween(15, 85, 'horizontal') + '%';
+    
+
+            element.target.style['top'] = top;
+            element.target.style['left'] = left;
+
+        }
+
+        function randomBetween(min, max, type) {
+            var random = Math.floor(Math.random() * (max - min) + min);
+            if(type === 'horizontal') {
+                if(random > 42 && random < 76) {
+                    return randomBetween(min, max, type);
+                }
+            }
+            return random;
+        }
+    </script>
+</body>
+</html>
